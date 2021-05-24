@@ -43,7 +43,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Навигация</span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
@@ -143,15 +143,15 @@
             var minutes = date.getUTCMinutes();
             var seconds = date.getUTCSeconds();
             var total = ((year - 2014) * 121680) + (month * 10140) + (day * 338) + (hours * 14) + minutes + seconds;
-            document.querySelector('count').innerHTML = (total + '').replace(/([0-9]{3})([0-9]{3})/, '$1 $2');
+            document.querySelector('#count').innerHTML = (total + '').replace(/([0-9]{3})([0-9]{3})/, '$1 $2');
             setInterval(function () {
                 total += Math.floor(Math.random() * 3);
-                document.querySelector('count').innerHTML = (total + '').replace(/([0-9]{3})([0-9]{3})/, '$1 $2');
+                document.querySelector('#count').innerHTML = (total + '').replace(/([0-9]{3})([0-9]{3})/, '$1 $2');
             }, 1000);
         })();
 
-        var search = document.querySelector('search');
-        var title = document.querySelector('search-title');
+        var search = document.querySelector('#search');
+        var title = document.querySelector('#search-title');
 
         if (window.location.hash) {
             var hash = window.location.hash.substring(1);
@@ -177,21 +177,21 @@
         }
 
         function parse() {
-            var yohoho = document.querySelector('yohoho');
+            var yohoho = document.querySelector('#yohoho');
             if (title && title.value && yohoho) {
                 if (/kinopoisk\.ru/i.test(title.value)) {
                     var exec = /(film\/|movie\/).*?([0-9]{3,7})\//gi.exec(title.value);
                     if (exec && exec[2]) {
                         yohoho.dataset.kinopoisk = exec[2];
-                        window.location.hash = '' + yohoho.dataset.kinopoisk;
+                        window.location.hash = '#' + yohoho.dataset.kinopoisk;
                         document.title = 'КиноПоиск: ' + yohoho.dataset.kinopoisk;
                     }
                 } else if (/^\d+$/.test(title.value)) {
                     yohoho.dataset.kinopoisk = title.value;
-                    window.location.hash = '' + title.value;
+                    window.location.hash = '#' + title.value;
                 } else {
                     yohoho.dataset.title = title.value;
-                    window.location.hash = '' + title.value;
+                    window.location.hash = '#' + title.value;
                 }
                 items = [];
                 return yo();
