@@ -143,7 +143,7 @@
             var minutes = date.getUTCMinutes();
             var seconds = date.getUTCSeconds();
             var total = ((year - 2014) * 121680) + (month * 10140) + (day * 338) + (hours * 14) + minutes + seconds;
-            document.querySelector('#count').innerHTML = (total + '').replace(/([0-9]{3})([0-9]{3})/, '$1 $2');
+            document.querySelector('count').innerHTML = (total + '').replace(/([0-9]{3})([0-9]{3})/, '$1 $2');
             setInterval(function () {
                 total += Math.floor(Math.random() * 3);
                 document.querySelector('#count').innerHTML = (total + '').replace(/([0-9]{3})([0-9]{3})/, '$1 $2');
@@ -177,7 +177,7 @@
         }
 
         function parse() {
-            var yohoho = document.querySelector('#yohoho');
+            var yohoho = document.querySelector('yohoho');
             if (title && title.value && yohoho) {
                 if (/kinopoisk\.ru/i.test(title.value)) {
                     var exec = /(film\/|movie\/).*?([0-9]{3,7})\//gi.exec(title.value);
